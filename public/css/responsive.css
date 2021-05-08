@@ -1,0 +1,12 @@
+@media screen and (max-width:1024px) and (min-width:641px){.carousel,.carousel-inner,.carousel-item,.fill{height:300px}}@media screen and (max-width:912px){.more{left:80%}.nav-search{justify-content:left!important}.nav-search input{width:100%!important}}@media screen and (max-width:767px){.home-side{display:none}.cart-table input{width:100%}}@media screen and (max-width:640px){.carousel,.carousel-inner,.carousel-item,.fill{height:200px;overflow:hidden}.carousel-inner img{height:inherit}.box .img-div{height:250px}}@media screen and (max-width:496px){.more{left:70%}}
+@media screen and (max-width:991px){
+    .mob-day{
+        display: block;
+    }
+    .lap-day{
+        display: none;
+    }
+    .navbar-collapse{
+        margin-top: 35px;
+    }
+}
