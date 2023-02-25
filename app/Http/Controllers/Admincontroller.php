@@ -65,9 +65,11 @@ class Admincontroller extends Controller
         $income = Order::where('order_status', 3)->sum('total');
         $pending = Order::where('order_status', 1)->orWhere('order_status', 2)->orWhere('order_status', 5)->sum('total');
         $total = $income + $pending;
-        $gplay = new \Nelexa\GPlay\GPlayApps($defaultLocale = 'en_US', $defaultCountry = 'us');
-        $appInfo = $gplay->getAppInfo('com.smsprogramerz.amvgon');
-        $download_count = $appInfo->getInstalls();
+        // google play store download count
+        // $gplay = new \Nelexa\GPlay\GPlayApps($defaultLocale = 'en_US', $defaultCountry = 'us');
+        // $appInfo = $gplay->getAppInfo('com.smsprogramerz.amvgon');
+        // $download_count = $appInfo->getInstalls();
+        $download_count = 0;
         return view('admin.home', [
             'admin' => $admin,
             'customers' => $customers,
@@ -157,11 +159,11 @@ class Admincontroller extends Controller
             'state' => 'required|string',
             'country' => 'required|string',
         ]);
-        if ($validator->fails()) {  
+        if ($validator->fails()) {
             Session::flash('error','Fill required fields');
             return back()->withErrors($validator);
 
-         }  
+         }
 
          if ($request->hasFile('image')) {
         \File::delete(public_path($store->image));
@@ -177,7 +179,7 @@ class Admincontroller extends Controller
             $filename = $store->image;
         }
 
-        
+
 
         $store->name = $request->name;
         $store->image = $filename;
@@ -211,11 +213,11 @@ class Admincontroller extends Controller
             'phone' => 'required|digits:10',
             'password' => 'nullable|min:4|max:8',
         ]);
-        if ($validator->fails()) {  
+        if ($validator->fails()) {
             Session::flash('error','Validation failed');
             return back()->withErrors($validator);
 
-         }  
+         }
 
          if ($request->hasFile('image')) {
         \File::delete(public_path($admin->image));
@@ -231,7 +233,7 @@ class Admincontroller extends Controller
             $filename = $admin->image;
         }
 
-        
+
 
         $admin->name = $request->name;
         $admin->image = $filename;
@@ -240,7 +242,7 @@ class Admincontroller extends Controller
         if(!empty($request->input('password'))){
             $admin->password = bcrypt($request->password);
         }
-        
+
         $admin->save();
         Session::flash('success','Profile updated');
         return redirect('/admin');
@@ -405,7 +407,7 @@ class Admincontroller extends Controller
         $order->district = District::find($order->district)->name;
         $order_details = [];
         $detailId = $request->detailId;
-        for ($i=0; $i <  count((array)$detailId); $i++) { 
+        for ($i=0; $i <  count((array)$detailId); $i++) {
             $order_details[$i] = OrderDetail::find($request->detailId[$i]);
         }
         return view('invoice',[
@@ -491,7 +493,7 @@ class Admincontroller extends Controller
             } else {
                 $o->customer_name = null;
             }
-            
+
             $o->details = OrderDetail::where('order_id',$o->id)->get();
             foreach($o->details as $d){
                 $d->qty = number_format((float)$d->qty, 2, '.', '');
@@ -506,7 +508,7 @@ class Admincontroller extends Controller
     public function printOrder(Request $request){
         $orders = [];
         $orderId = $request->orderId;
-        for ($i=0; $i <  count((array)$orderId); $i++) { 
+        for ($i=0; $i <  count((array)$orderId); $i++) {
             $orders[$i] = Order::find($request->orderId[$i]);
         }
         foreach($orders as $o){
@@ -516,7 +518,7 @@ class Admincontroller extends Controller
             } else {
                 $o->customer_name = null;
             }
-            
+
             $o->details = OrderDetail::where('order_id',$o->id)->get();
             foreach($o->details as $d){
                 $d->qty = number_format((float)$d->qty, 2, '.', '');

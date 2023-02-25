@@ -24,6 +24,10 @@ class HomeController extends Controller
         }else {
             $day = DeliveryDay::where('status',1)->first();
         }
+        $hotProducts = [];
+        $allHots = [];
+        $products = [];
+        $sideRandoms = [];
         if($day !== null){
             $day = $day->name;
             if($day == 'today'){
@@ -37,11 +41,6 @@ class HomeController extends Controller
                 $products = Product::where('type', 1)->get()->where('active',1)->take(10);
                 $sideRandoms = Product::where('type', 1)->get()->where('active',1)->take(10);
             }
-        }else{
-            $hotProducts = [];
-            $allHots = [];
-            $products = [];
-            $sideRandoms = [];
         }
         foreach ($hotProducts as $hot) {
             if ($hot->unit == 'kg') {
@@ -198,7 +197,7 @@ class HomeController extends Controller
         $product->excellent_price = $product->excellent_price * min($minArr);
         $product->low_qty = min($minArr);
         foreach ($relateds as $item) {
-                
+
             $item->price = $item->price * $item->min_qty;
             $item->standard_price = $item->standard_price * $item->standard_min_qty;
             $item->excellent_price = $item->excellent_price * $item->excellent_min_qty;

@@ -119,7 +119,9 @@ class LoginController extends Controller
             return Redirect::to(URL::previous() . "#reg")->withInput($request->all())->withErrors($validator);
         }
         $data = $request->all();
-        return view('customer.verify' )->with('data', $data);
+        // firebase otp verification page
+        // return view('customer.verify' )->with('data', $data);
+        return $this->customerCreate($request);
 
     }
 

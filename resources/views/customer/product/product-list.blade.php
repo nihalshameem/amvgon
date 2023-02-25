@@ -48,31 +48,33 @@
                              <div class="radio">
                                 <label><input type="radio" class="price_type" name="price_type" value="excellent" data-qty="{{$product->excellent_min_qty}}">Excellent:{{$product->excellent_price * 10}} <small class="text-success">Rupees for {{$product->excellent_min_qty*1000}} grams</small><span class="offer" {{$product->excellent_discount == 0 ? 'hidden': ''}}>{{$product->excellent_discount}}%</span></label>
                             </div>
-                           
+
                             <div class="radio">
                                 <label><input type="radio" class="price_type" name="price_type" value="standard" data-qty="{{$product->standard_min_qty}}">Standard:{{$product->standard_price * 10}} <small class="text-success">Rupees for {{$product->standard_min_qty*1000}} grams</small><span class="offer" {{$product->standard_discount == 0 ? 'hidden': ''}}>{{$product->standard_discount}}%</span></label>
                             </div>
                              <div class="radio">
                                 <label><input type="radio" class="price_type" name="price_type" value="normal" data-qty="{{$product->min_qty}}" checked>Normal:{{$product->price * 10}} <small class="text-success">Rupees for {{$product->min_qty*1000}} grams</small><span class="offer" {{$product->discount == 0 ? 'hidden': ''}}>{{$product->discount}}%</span></label>
                             </div>
-                           
+
                         </form>
                         <button class="btn btn-cus btn-sm" onclick="beforeCart($(this).parent())"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
                     </div>
                 </div>
                 @endforeach
             </div>
-            @if ($products->lastPage() > 1)
+            @if (count($products) > 0 && $products->lastPage() > 1)
           <div class="btn-group" role="group" aria-label="Basic example">
           </div>
           @endif
-          <div class="btn-group mt-4" role="group" aria-label="Basic example">
-            <a href="{{ $products->url($products->currentPage()-1) }}" type="button" class="btn btn-outline-secondary {{ ($products->currentPage() == 1) ? ' disabled' : '' }}"><i class="mdi mdi-chevron-left"></i></a>
-            @for ($i = 1; $i <= $products->lastPage(); $i++)
-            <a href="{{ $products->url($i) }}" type="button" class="btn btn-outline-secondary{{ ($products->currentPage() == $i) ? ' active' : '' }}">{{ $i }}</a>
-            @endfor
-            <a href="{{ $products->url($products->currentPage()+1) }}" type="button" class="btn btn-outline-secondary{{ ($products->currentPage() == $products->lastPage()) ? ' disabled' : '' }}"><i class="mdi mdi-chevron-right"></i></a>
-          </div>
+          @if (count($products) > 0)
+            <div class="btn-group mt-4" role="group" aria-label="Basic example">
+                <a href="{{ $products->url($products->currentPage()-1) }}" type="button" class="btn btn-outline-secondary {{ ($products->currentPage() == 1) ? ' disabled' : '' }}"><i class="mdi mdi-chevron-left"></i></a>
+                @for ($i = 1; $i <= $products->lastPage(); $i++)
+                <a href="{{ $products->url($i) }}" type="button" class="btn btn-outline-secondary{{ ($products->currentPage() == $i) ? ' active' : '' }}">{{ $i }}</a>
+                @endfor
+                <a href="{{ $products->url($products->currentPage()+1) }}" type="button" class="btn btn-outline-secondary{{ ($products->currentPage() == $products->lastPage()) ? ' disabled' : '' }}"><i class="mdi mdi-chevron-right"></i></a>
+            </div>
+            @endif
         </div>
     </div>
 <!-- Before cart Modal -->
@@ -92,7 +94,7 @@
             <input type="text" id="sept" hidden>
             <input type="text" id="spid" hidden>
             </form>
-            
+
         </div>
         <div class="modal-footer">
           <button type="submit" form="beforeCartForm" class="btn btn-sm btn-cus"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
@@ -117,7 +119,7 @@
               <label class="ml-1" for="inlineFormInputName2">grams</label>
               <input type="text" id="cepid" hidden>
               </form>
-              
+
           </div>
           <div class="modal-footer">
             <button type="submit" form="beforeCartComboForm" class="btn btn-sm btn-cus"><i class="mdi mdi-cart-outline"></i> Add To Cart</button>
