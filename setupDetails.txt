@@ -1,0 +1,27 @@
+
+- Create a MySql DB as `amvegon` then import the following file to `amvegon` DB
+
+- import amvegon20230225.sql
+
+
+
+
+=====================================
+Super Admin Credential
+=====================================
+email: nihalshameem6@gmail.com
+password: superAdmin123
+
+=====================================
+Order Manager Credential
+=====================================
+email: orderadmin1@gmail.com
+password: orderAdmin123
+
+
+=====================================
+Delivery Manager Credential
+=====================================
+
+email: deliveryadmin1@gmail.com
+password: deliveryAdmin123

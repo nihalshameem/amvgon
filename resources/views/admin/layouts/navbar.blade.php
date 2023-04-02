@@ -1,12 +1,15 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="navbar-brand-wrapper d-flex justify-content-center">
-<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-  <a class="navbar-brand brand-logo" href="{{url('/admin')}}"><img src="{{asset($store->image)}}" alt="logo"/></a>
-  <a class="navbar-brand brand-logo-mini" href="{{url('/admin')}}"><img src="{{asset('images/logo/logo1.jpeg')}}" alt="logo"/></a>
+<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+  <a class="navbar-brand brand-logo" href="{{url('/admin')}}">
+    <h4>Direct Farms Admin</h4>
+    <!-- <img src="{{asset($store->image)}}" alt="logo"/></a> -->
+  <a class="navbar-brand brand-logo-mini" href="{{url('/admin')}}">
+    <img src="{{asset('images/logo/logo1.jpeg')}}" alt="logo"/></a>
   <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
     <span class="mdi mdi-sort-variant"></span>
   </button>
-</div>  
+</div>
 </div>
 <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
 <ul class="navbar-nav mr-lg-4 w-100">
@@ -33,8 +36,8 @@
       <span class="count"></span>
     </a>
     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown" id="noti-drop">
-      
-      
+
+
     </div>
   </li>
   <li class="nav-item nav-profile dropdown">

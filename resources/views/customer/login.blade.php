@@ -11,7 +11,8 @@ $store = App\Models\Store::find(1);
       <div class="col-lg-5 col-md-7 mx-auto">
          <form action="{{url('/login/customer/submit')}}" method="post" class="auth-class" id="cus-login">
             @csrf
-            <img src="{{$store->image}}" alt="" class="auth-logo">
+            <h2 style= "color: orange">Direct Farms</h2>
+            <!-- <img src="{{$store->image}}" alt="" class="auth-logo"> -->
             <h5>Login Here</h5>
             <div class="form-group">
                <label for="exampleInputEmail1" class="sr-only">Email address</label>

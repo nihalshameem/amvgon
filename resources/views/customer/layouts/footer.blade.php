@@ -1,8 +1,8 @@
 <footer>
     <div class="row">
         <div class="col-md-4 mx-auto">
-            <img src="{{asset($store->image)}}" alt="">
-            <h5>{{$store->name}}</h5>
+            <!-- <img src="{{asset($store->image)}}" alt=""> -->
+            <h1 style="color:black;">Direct Farms</h1>
             <a href="{{url('/')}}">{{url('/')}}</a>
         </div>
         <div class="col-md-4 mx-auto">

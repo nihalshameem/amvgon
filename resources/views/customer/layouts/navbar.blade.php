@@ -11,7 +11,8 @@ if ($day == null) {
 @endphp
 <nav class="navbar navbar-expand-lg">
    <a class="navbar-brand" href="{{ url('/') }}">
-   <img src="{{ asset($store->image) }}" alt="_logo">
+   <!-- <img src="{{ asset($store->image) }}" alt="_logo"> -->
+   <h1>Direct Farms</h1>
    </a>
    <button class="navbar-toggler" type="button" id="mobileBtn">
    <i class="mdi mdi-menu"></i>

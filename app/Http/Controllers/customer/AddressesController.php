@@ -44,6 +44,7 @@ class AddressesController extends Controller
         $alladdress = Address::where('customer_id', $user_id)->get();
         $adstring = $request->door_no.', '.$request->village.', '.District::find($request->district)->name.', tamil nadu '.$request->pincode.', india';
         $adstring = str_replace(" ", "+", $adstring);
+        \Log::info("adstring >>> ".json_encode($adstring));
         $json = file_get_contents("https://maps.google.com/maps/api/geocode/json?key=".env('MAP_KEY')."&address=" . $adstring . "&sensor=false");
         $json = json_decode($json);
 
@@ -52,7 +53,7 @@ class AddressesController extends Controller
         if (count($alladdress) < 4) {
             Address::create([
                 'customer_id' => $user_id,
-                'door_no' => $request->door_no, 
+                'door_no' => $request->door_no,
                 'village' => $request->village,
                 'district' => $request->district,
                 'pincode' => $request->pincode,

@@ -125,6 +125,7 @@ class CartsController extends Controller
             return response()->json(['error' => $validator->errors()], 401);
         }
         $day = DeliveryDay::where('name',$request->day)->where('status',1)->first();
+        \Log::info("day >>> ".json_encode($day));
         if($day !== null){
             $day = $day->name;
         }else{
